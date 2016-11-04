@@ -1,0 +1,21 @@
+"entity.*|selectedFarmerItem"[mode == 'read']{
+    enabled:false;
+}
+
+"entity.*|selectedFarmerItem"[mode != 'read']{
+    enabled:true;
+}
+
+"entity.*|selectedFacilityItem"[mode == 'read']{
+    enabled:false;
+}
+"entity.*|selectedFacilityItem"[mode != 'read']{
+    enabled:true;
+}
+
+
+
+"entity.objid"[mode == 'edit']{
+    enabled:false;
+}
+

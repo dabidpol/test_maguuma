@@ -1,0 +1,10 @@
+<workunit schemaName="test_pagricommodity_subtype">
+    <invokers>
+        <invoker type="test_pagricommodity_subtype:create" caption="Commodity Specific/Subtype" action="create" role="MASTER"/>
+        <invoker type="test_pagricommodity_subtype:open" caption="Commodity Specific/Subtype" action="open" role="MASTER"/>
+    </invokers>
+    <code class="test.maguuma.models.FarmerSubTypeModel" />
+    <pages>
+        <page template="test.maguuma.views.FarmerSubTypePage" />
+    </pages>
+</workunit>

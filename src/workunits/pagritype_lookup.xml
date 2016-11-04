@@ -1,0 +1,10 @@
+<workunit extends="com/rameses/seti2/templates/CrudLookup.xml" 
+         schemaName="test_pagricommodity_type">
+  <invokers>
+      <invoker type="test_pagricommodity_type:lookup" caption="Lookup Type" 
+                 action="init" target="popup" height="350"  
+                 cols="code,name,description"/>
+  </invokers>
+  
+   
+</workunit>

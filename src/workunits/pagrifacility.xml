@@ -1,0 +1,10 @@
+<workunit schemaName="test_pagriphf">
+    <invokers>
+        <invoker type="test_pagriphf:create" caption="Facility Capture" action="create" role="MASTER"/>
+        <invoker type="test_pagriphf:open" caption="Facility Capture" action="open" role="MASTER"/>
+    </invokers>
+    <code class="test.maguuma.models.FarmerFacilityModel" />
+    <pages>
+        <page template="test.maguuma.views.FarmerFacilityPage" />
+    </pages>
+</workunit>

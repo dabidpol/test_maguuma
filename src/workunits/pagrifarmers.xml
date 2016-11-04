@@ -1,0 +1,10 @@
+<workunit schemaName="test_pagrifarmer">
+    <invokers>
+        <invoker type="test_pagrifarmer:create" caption="Farmer" action="create" role="MASTER"/>
+        <invoker type="test_pagrifarmer:open" caption="Farmer" action="open" role="MASTER"/>
+    </invokers>
+    <code class="test.maguuma.models.FarmerModel" />
+    <pages>
+        <page template="test.maguuma.views.FarmerPage" />
+    </pages>
+</workunit>
