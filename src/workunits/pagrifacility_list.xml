@@ -1,5 +1,5 @@
 <workunit extends="com/rameses/seti2/templates/CrudList.xml" schemaName="test_pagriphf">
     <invokers>
-        <invoker folderid="home/maguuma" caption="Facilities" action="init" role="MASTER"/>
+        <invoker folderid="home/maguuma" caption="Facilities" action="init" index="50" role="MASTER" icon="test/maguuma/icons/facility.png" />
     </invokers>
 </workunit>

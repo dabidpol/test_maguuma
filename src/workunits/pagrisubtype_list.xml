@@ -1,5 +1,5 @@
 <workunit extends="com/rameses/seti2/templates/CrudList.xml" schemaName="test_pagricommodity_subtype">
     <invokers>
-        <invoker folderid="home/maguuma" caption="Commodity Specifics/Subtypes" action="init" role="MASTER" />
+        <invoker folderid="home/maguuma" caption="Commodity Subtypes" action="init" index="80" role="MASTER" icon="test/maguuma/icons/commoditysubtype.png"/>
     </invokers>
 </workunit>

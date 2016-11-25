@@ -4,7 +4,6 @@
       <invoker type="test_pagricommodity_type:lookup" caption="Lookup Type" 
                  action="init" target="popup" height="350"  
                  cols="code,name,description"/>
-  </invokers>
-  
+  </invokers> 
    
 </workunit>

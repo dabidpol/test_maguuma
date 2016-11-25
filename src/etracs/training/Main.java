@@ -19,10 +19,8 @@ public class Main {
             Map roles = new HashMap();
             roles.put("AGRI.MASTER", null);
             roles.put("ENTITY.MASTER", null);
-
-
-            //roles.put("TREASURY.CHECKPRINT", null);
-            //roles.put("TREASURY.CHECKMASTER", null);
+            roles.put("AGRI.ENCODER", null);
+            roles.put("AGRI.APPROVER", null);
             Map profile = new HashMap();
             profile.put("CLIENTTYPE", "desktop");
             profile.put("USERID", "ADMIN");

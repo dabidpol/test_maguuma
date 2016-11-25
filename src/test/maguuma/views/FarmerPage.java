@@ -35,9 +35,6 @@ public class FarmerPage extends javax.swing.JPanel {
         xFormPanel1 = new com.rameses.rcp.control.XFormPanel();
         entityLookup1 = new com.rameses.entity.components.EntityLookup();
         entityAddressLookup1 = new com.rameses.entity.components.EntityAddressLookup();
-        genderList1 = new com.rameses.enterprise.components.GenderList();
-        xDateField2 = new com.rameses.rcp.control.XDateField();
-        civilStatusList1 = new com.rameses.enterprise.components.CivilStatusList();
         entityLookup2 = new com.rameses.entity.components.EntityLookup();
         xDataTable1 = new com.rameses.rcp.control.XDataTable();
         xDataTable2 = new com.rameses.rcp.control.XDataTable();
@@ -61,21 +58,6 @@ public class FarmerPage extends javax.swing.JPanel {
         entityAddressLookup1.setRequired(true);
         xFormPanel1.add(entityAddressLookup1);
 
-        genderList1.setCaption("Gender");
-        genderList1.setName("entity.gender"); // NOI18N
-        genderList1.setRequired(true);
-        xFormPanel1.add(genderList1);
-
-        xDateField2.setCaption("Birthdate");
-        xDateField2.setName("entity.birthdate"); // NOI18N
-        xDateField2.setRequired(true);
-        xFormPanel1.add(xDateField2);
-
-        civilStatusList1.setCaption("Civil Status");
-        civilStatusList1.setName("entity.civilstatus"); // NOI18N
-        civilStatusList1.setRequired(true);
-        xFormPanel1.add(civilStatusList1);
-
         entityLookup2.setCaption("Spouse's Name");
         entityLookup2.setExpression("#{entity.name}");
         entityLookup2.setName("entity.spouse"); // NOI18N
@@ -92,7 +74,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -106,7 +88,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -120,7 +102,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -148,7 +130,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -162,7 +144,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -176,7 +158,7 @@ public class FarmerPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", false}
+                , new Object[]{"required", true}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -214,7 +196,6 @@ public class FarmerPage extends javax.swing.JPanel {
             })
         });
         xDataTable1.setHandler("farmerItemHandler");
-        xDataTable1.setId("farmerItemHandler");
         xDataTable1.setName("selectedFarmerItem"); // NOI18N
 
         com.rameses.rcp.control.border.XTitledBorder xTitledBorder3 = new com.rameses.rcp.control.border.XTitledBorder();
@@ -251,7 +232,6 @@ public class FarmerPage extends javax.swing.JPanel {
             })
         });
         xDataTable2.setHandler("facilityItemHandler");
-        xDataTable2.setId("facilityItemHandler");
         xDataTable2.setName("selectedFacilityItem"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -272,23 +252,20 @@ public class FarmerPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(xFormPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xFormPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(xDataTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(xDataTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(xDataTable2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.rameses.enterprise.components.CivilStatusList civilStatusList1;
     private com.rameses.entity.components.EntityAddressLookup entityAddressLookup1;
     private com.rameses.entity.components.EntityLookup entityLookup1;
     private com.rameses.entity.components.EntityLookup entityLookup2;
-    private com.rameses.enterprise.components.GenderList genderList1;
     private com.rameses.rcp.control.XDataTable xDataTable1;
     private com.rameses.rcp.control.XDataTable xDataTable2;
-    private com.rameses.rcp.control.XDateField xDateField2;
     private com.rameses.rcp.control.XFormPanel xFormPanel1;
     // End of variables declaration//GEN-END:variables
 }

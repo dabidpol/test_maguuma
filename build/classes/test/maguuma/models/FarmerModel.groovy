@@ -20,8 +20,15 @@ class FarmerModel extends CrudFormModel{
     @Service("PersistenceService")
     def persistenceSvc;
     
+//    @Service("FarmerApproveService")
+//    def fasSvc
+    
     
     //boolean editAllowed = false;
+    
+    boolean isAllowApprove() {
+         return ( mode=='read' && entity.state.toString().matches('DRAFT|ACTIVE') ); 
+    }
     
     def tenurials = ['OWNED', 'RENTED'];
     
@@ -39,14 +46,14 @@ class FarmerModel extends CrudFormModel{
 //    void test(o){
 //        println o
 //    }
-//        public void beforeSave(o){
-////            if(!entity.items)throw new Exception("Items must not be empty")
-//            println entity
-//            //entity.transtate = "CLOSED";
-//            
-//            //entity.transmittalnum = dtSvc.getServerYear() +"-"+ dtSvc.getServerMonth() + seqSvc.getNextFormattedSeries('check' + dtSvc.getServerYear() + dtSvc.getServerMonth()) ;
-//            
-//        }
+        public void beforeSave(o){
+//            if(!entity.items)throw new Exception("Items must not be empty")
+            //println entity
+            entity.state = "DRAFT";
+            
+            //entity.transmittalnum = dtSvc.getServerYear() +"-"+ dtSvc.getServerMonth() + seqSvc.getNextFormattedSeries('check' + dtSvc.getServerYear() + dtSvc.getServerMonth()) ;
+            
+        }
  
     def farmerItemHandler = [
         fetchList: { o->
@@ -104,7 +111,9 @@ class FarmerModel extends CrudFormModel{
             def m = persistenceSvc.read( [_schemaname:'entity_address', objid:selectedFarmerItem.address.objid] );
             return Inv.lookupOpener( "address:editor", [handler:h, entity:m] );
             //binding.refresh();
+           
         }
+        
     }
     //    ========== Lookup Commodity =========
     def getLookupCommodity(){
@@ -113,7 +122,7 @@ class FarmerModel extends CrudFormModel{
    
 //         ========== Lookup type =========
         def getLookupPagritype(){
-            return Inv.lookupOpener('test_pagricommodity_type:lookup', [parentid:selectedFarmerItem.commodity.objid])
+            return Inv.lookupOpener('test_pagricommodity_type:lookup', [_schemaname:'test_pagricommodity', parentid:selectedFarmerItem.commodity.objid])
         }
 
     
@@ -126,5 +135,39 @@ class FarmerModel extends CrudFormModel{
         def getLookupPagriphf(){
             return Inv.lookupOpener('phf:lookup')
         }
+        
+    
+//    void changestate(){
+//        switch(entity.state) {
+//        case 'DRAFT':
+//            entity.state = 'APPROVED';
+//            break;
+//            
+////        case 'FORREVIEW':
+////            entity.state = 'FORAPPROVAL';
+////            break;
+////            
+////        case 'FORAPPROVAL':
+////            entity.state = 'APPROVE';
+////            break;
+//        default:
+//            break;
+//        }
+//        fasSvc.changestate(entity)
+//   
+//    }
+
+    void approve() { 
+        if ( MsgBox.confirm('You are about to approve this information. Proceed?')) { 
+            getPersistenceService().update([ 
+               _schemaname: 'test_pagrifarmer', 
+               objid : entity.objid, 
+               state : 'APPROVED' 
+            ]); 
+            loadData(); 
+        }
+    }
+    
+    
 
     }
