@@ -122,13 +122,13 @@ class FarmerModel extends CrudFormModel{
    
 //         ========== Lookup type =========
         def getLookupPagritype(){
-            return Inv.lookupOpener('test_pagricommodity_type:lookup', [_schemaname:'test_pagricommodity', parentid:selectedFarmerItem.commodity.objid])
+            return Inv.lookupOpener('test_pagricommodity_type:lookup', [parentid:selectedFarmerItem.commodity.objid])
         }
 
     
     //         ========== Lookup Subtype =========
         def getLookupPagrisubtype(){
-            return Inv.lookupOpener('test_pagricommodity_subtype:lookup')
+            return Inv.lookupOpener('test_pagricommodity_subtype:lookup', [parentid:selectedFarmerItem.commoditytype.objid])
         }
 //       
 //       ========== Lookup Facility ========= 

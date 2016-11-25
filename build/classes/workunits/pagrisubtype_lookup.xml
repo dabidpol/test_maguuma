@@ -5,4 +5,24 @@
                  action="init" target="popup" height="350"  
                  cols="code,name,description"/>
   </invokers>
+   <code>
+       <![CDATA[
+       import com.rameses.rcp.annotations.*;
+       import com.rameses.rcp.common.*;
+       import com.rameses.osiris2.client.*;
+       import com.rameses.osiris2.common.*;
+       import com.rameses.seti2.models.*;
+       
+       class test extends CrudLookupModel {
+              
+            def parentid;
+            
+            def getCustomFilter() {
+                
+                return ["parentid=:id", [id:parentid]];
+            }
+            
+       } 
+       ]]>
+   </code> 
 </workunit>
