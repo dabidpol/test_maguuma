@@ -3,7 +3,10 @@
         <invoker type="test_pagrifarmer:create" caption="Farmer" action="create" role="ENCODER,MASTER"/>
         <invoker type="test_pagrifarmer:open" caption="Farmer" action="open" role="ENCODER,MASTER"/>
         <invoker type="formActions" caption="Approve" action="approve" 
-                 role="APPROVER" visibleWhen="#{allowApprove==true}"/>   
+                 role="APPROVER" visibleWhen="#{allowApprove==true}"/> 
+        
+        
+          
     </invokers>
     <code class="test.maguuma.models.FarmerModel" />
     <pages>

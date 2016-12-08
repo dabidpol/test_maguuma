@@ -6,7 +6,11 @@
          </folder> 
     </folder> -->
     
-    
+    <folder id="explorer">
+        <folder id="Transactions" caption="Mag-uuma Transactions" index="100">            
+         </folder>
+ </folder>
+ 
     <folder id="home">
         <folder id="maguuma" caption="Mag-uuma" index="100">            
          </folder>

@@ -22,6 +22,9 @@ class FarmerModel extends CrudFormModel{
     
 //    @Service("FarmerApproveService")
 //    def fasSvc
+
+    String serviceName = 'FarmerService';
+    String entityName = 'farmer';
     
     
     //boolean editAllowed = false;
@@ -30,18 +33,20 @@ class FarmerModel extends CrudFormModel{
          return ( mode=='read' && entity.state.toString().matches('DRAFT|ACTIVE') ); 
     }
     
-    def tenurials = ['OWNED', 'RENTED'];
+    def tenurials = ['OWNED', 'RENTED', 'LEASED', 'TENANT', 'OTHERS'];
     
-    def units = ['AREA', 'HEADS'];
+    def units = ['AREA', 'HEADS', 'HILLS'];
     
     def selectedFarmerItem;
      
     public void afterCreate(){
-        entity.dtcreated = dtSvc.getServerDate();
-        entity.createdby_name = OsirisContext.env.FULLNAME;
-        entity.createdby_id = OsirisContext.env.USERID;
+        
         entity.farmerItems = [];
         entity.facilityItems = [];
+        farmerItemHandler.reload();
+        facilityItemHandler.reload();
+        entity.farmerid = OsirisContext.env.ORGID + "-FARM" + seqSvc.getNextFormattedSeries('farmer');
+            
     }
 //    void test(o){
 //        println o
@@ -49,6 +54,9 @@ class FarmerModel extends CrudFormModel{
         public void beforeSave(o){
 //            if(!entity.items)throw new Exception("Items must not be empty")
             //println entity
+            entity.dtcreated = dtSvc.getServerDate();
+            entity.createdby_name = OsirisContext.env.FULLNAME;
+            entity.createdby_id = OsirisContext.env.USERID;
             entity.state = "DRAFT";
             
             //entity.transmittalnum = dtSvc.getServerYear() +"-"+ dtSvc.getServerMonth() + seqSvc.getNextFormattedSeries('check' + dtSvc.getServerYear() + dtSvc.getServerMonth()) ;
@@ -60,14 +68,31 @@ class FarmerModel extends CrudFormModel{
             def p = [_schemaname: 'test_pagrifarmeritems'];
             p.findBy = [ 'parentid': entity.objid];
             p.select = "objid,parentid,address_text,commodity_objid,commodity_name,commoditytype_objid,commoditytype_name,commoditysubtype_objid,commoditysubtype_name,tenurialstatus,unit,qty,maintainer,remarks";
-            
-            entity.farmerItems = queryService.getList( p );
-               
+            if(!entity.farmerItems){
+                entity.farmerItems = queryService.getList( p );
+            }
             return entity.farmerItems;
+        },
+        createItem : {
+           return[
+               objid : 'FI' + new java.rmi.server.UID(),
+               newitem : false,
+           ]
         },
         onAddItem : {
             entity.farmerItems << it;
-        }
+        },
+        onRemoveItem : {
+            if (MsgBox.confirm('Delete item?')) {
+                //service.deleteFarmerItems(it)
+                entity.farmerItems.remove(it)
+                farmerItemHandler.reload();
+                return true;
+                }
+            return false;
+            }
+            
+        
     ] as EditorListModel;
     
     
@@ -79,14 +104,26 @@ class FarmerModel extends CrudFormModel{
                 def p = [_schemaname: 'test_pagrifarmerphf'];
                 p.findBy = [ 'parentid': entity.objid];
                 p.select = "objid,parentid,phf_objid,phf_name,phfnumber";
-                
-                entity.facilityItems = queryService.getList( p );
-                
+                if(!entity.facilityItems){
+                    entity.facilityItems = queryService.getList( p );
+                }
                 return entity.facilityItems;
                 },
-                
-             onAddItem : {
-                entity.facilityItems << it;
+                createItem : {
+                    return[
+                        objid : 'FF' + new java.rmi.server.UID()
+                    ]
+                 },
+                onAddItem : {
+                    entity.facilityItems << it;
+                },
+                onRemoveItem : {
+                    if (MsgBox.confirm('Delete item?')){                
+                        entity.facilityItems.remove(it);
+                        facilityItemHandler.reload();
+                        return true;
+                    }
+                    return false;
                 }              
                          
         ] as EditorListModel;
